@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 
-// set view engine
+// set view engine yes
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
