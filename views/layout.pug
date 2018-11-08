@@ -1,13 +1,17 @@
 doctype html
-html
+html(lang='en')
   include ../includes/head.pug
+    block title
   body
-    .p-3.mb-2.bg-success.text-white
-      block content
-      header
-        h1 HomeHomeHome
-        h2 PagePagePage
-      main
-        include ../includes/navBar.pug
-        p from layout
-      
+    include ../includes/navBar.pug
+    .container-fluid.text-center
+      .row.content
+        include ../includes/rightNav.pug
+        .col-sm-8.text-left
+          h1 Welcome
+          block content
+          hr
+          h3 Test
+          p Lorem ipsum...
+        include ../includes/leftNav.pug
+    include ../includes/footer.pug

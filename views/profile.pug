@@ -1,20 +1,4 @@
-doctype html
-html
-  head
-  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
-  head
-    // Latest compiled and minified CSS
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    // jQuery library
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    // Latest compiled JavaScript
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    meta(charset='utf-8')
-    title Homepage
-  body
-    include ../includes/navBar.pug
-    header
-      h1 Welcome to your profile
-    main
-      img(src='#')
-      p This is your profile thumbnail
+extends layout.pug
+
+block content
+  p welcome to your profile
