@@ -1,8 +1,7 @@
 extends layout.pug
 
 block content
-	h3= Add Sequence
-	form#form_add_seq(seqID="addseq", method="post", action="/addseq")
+		form#form_add_seq(seqID="addseq", method="post", action="/addseq")
 		span Seq ID
 		span &nbsp;
 		input#input_seqid(type="text", placeholder="Sequence ID", name="seqID")
@@ -38,4 +37,4 @@ block content
 		input#input_mainserver(type="text", placeholder="Main Server", name="mainServer")
 		br
 		br
-button#submit_seq(type="submit") submit
+		button#submit_seq(type="submit") submit

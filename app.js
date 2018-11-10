@@ -1,38 +1,44 @@
+//Get libraries
+const createError = require('http-errors');
 const express = require('express');
+const app = express();
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const mongoose = require('mongoose');
+
+//Define paths
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
-const passportSetup = require('./config/passport-setup');
-const mongoose = require('mongoose');
-const keys = require('./config/keys');
-const app = express();
+const newseqRoutes = require('./routes/newseq-routes');
 
-// set view engine yes
-//app.set('views', path.join(__dirname, 'views'));
+//Config and setups
+const keys = require('./config/keys');
+const passportSetup = require('./config/passport-setup');
+
+//Set view engine
 app.set('view engine', 'pug');
 
-// set up session cookies
+//Set session cookies
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: [keys.session.cookieKey]
 }));
 
-// initialize passport
+//Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// connect to mongodb
+//Connect to mongo database
 mongoose.connect(keys.mongodb.dbURI, () => {
     console.log('connected to mongodb');
 });
 
-// set up routes
+//Use routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
+app.use('/newseq', newseqRoutes);
 
-// create home route
+//Create home
 app.get('/', (req, res) => {
     res.render('home', { user: req.user });
 });
