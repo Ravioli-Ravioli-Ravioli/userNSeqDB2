@@ -62,8 +62,9 @@ router.post('/addseq', function(req, res){
 
 });
 
-router.post('/upload', upload.single('file-to-upload'), (req, res) => {
+router.post('/upload', upload.single('file-to-upload'), (req, res, next) => {
   console.log(req.body);
+  console.log(req.file.path);
   res.redirect('/profile');
 });
 
