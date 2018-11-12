@@ -3,42 +3,16 @@ const router = express.Router();
 const mongodb = require('mongodb');
 const fileUpload = require('express-fileupload');
 const keys = require('../config/keys');
+const multer = require('multer');
+const upload = multer({
+  dest: '../uploads/' // this saves your file into a directory called "uploads"
+});
 
 const app = express();
-
-app.use(fileUpload());
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('home', { title: 'Express' });
-});
-
-// View Seqs
-router.get('/thelist', function(req, res){
-	var MongoClient = mongodb.MongoClient;
-	var url = 'mongodb://localhost:27017/usernseq';
-
-	MongoClient.connect(url, function (err, db){
-		if(err){
-			console.log('Unable to connect to the server', err);
-		} else {
-			console.log('Connection Established', url);
-			var collection = db.collection('seqs');
-
-			collection.find({}).toArray(function(err, result){
-				if (err){
-					res.send(err); //Send to browser screen
-				} else if (result.length){
-					res.render('seqlist', {
-						"seqlist" : result
-					});
-				} else {
-					res.send('No documents found!');
-				}
-				db.close();
-			});
-		}
-	});
 });
 
 // Add Seq
@@ -76,7 +50,7 @@ router.post('/addseq', function(req, res){
           if (err) {
             console.log(err);
           } else {
-             res.redirect('profile');
+             res.redirect('upload');
           }
 
           // Close the database
@@ -88,20 +62,9 @@ router.post('/addseq', function(req, res){
 
 });
 
-app.post('/upload', function(req, res) {
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let thefile = req.files.thefile;
-  // Use the mv() method to place the file somewhere on your server
-  thefile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
-    if (err)
-      return res.status(500).send(err);
-
-    res.send('File uploaded!');
-  });
+router.post('/upload', upload.single('file-to-upload'), (req, res) => {
+  console.log(req.body);
+  res.redirect('/profile');
 });
 
 module.exports = router;

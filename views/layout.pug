@@ -1,8 +1,9 @@
 doctype html
 html(lang='en')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
   include ../includes/head.pug
     block title
-  body
+  body(ng-app='fileupp')
     include ../includes/navBar.pug
     .container-fluid.text-center
       .row.content
