@@ -9,7 +9,12 @@ html(lang='en')
         include ../includes/rightNav.pug
         .col-sm-8.text-left
           h1 Welcome
-          block content
+          .col-md-4.text-center
+            .panel.panel-primary
+              .panel-heading Login Using
+              .panel-body
+                br
+                block content
           hr
           h3 Test
           p Lorem ipsum...
