@@ -1,0 +1,24 @@
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    #myNavbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          a(href='/') Home
+        li
+          a(href='/auth/login') Profile
+        li
+          a(href='/auth/login') My Sequences
+        li
+          a(href='/auth/login') Add Sequence
+        li
+          a(href='/auth/login') Search Sequences
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/auth/login')
+            span.glyphicon.glyphicon-log-in
+            |  Login

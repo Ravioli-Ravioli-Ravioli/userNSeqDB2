@@ -11,14 +11,27 @@ const upload = multer({
 const app = express();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Express' });
+//router.get('/', function(req, res, next) {
+//  res.render('home', { title: 'Express' });
+//});
+
+router.get('/', (req, res) => {
+    res.render('home', { user: req.user });
 });
 
-// Add Seq
-//router.get('/newseq', function(req, res){
-//	res.render('newseq', {title: 'Add Sequence'})
-//});
+const authCheck = (req, res, next) => {
+    if(!req.user){
+        res.redirect('/');
+    } else {
+        next();
+    }
+};
+
+router.get('/homeIn', authCheck, (req, res) => {
+    res.render('homeIn', { user: req.user });
+});
+
+//
 
 router.post('/addseq', function(req, res){
     console.log(req.body);
