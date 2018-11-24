@@ -27,12 +27,6 @@ const indexRoutes = require('./routes/index-routes');
 const keys = require('./config/keys');
 const passportSetup = require('./config/passport-setup');
 
-<<<<<<< current
-//Set view engine
-=======
-// set view engine
-//app.set('views', path.join(__dirname, 'views'));
->>>>>>> before discard
 app.set('view engine', 'pug');
 //app.use(express.bodyParser());
 
