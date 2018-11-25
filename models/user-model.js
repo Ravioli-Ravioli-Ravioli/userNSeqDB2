@@ -16,7 +16,15 @@ const userSchema = new Schema({
     isPlusUser: Boolean,
     lang: String,
     cir: Number,
-    verified: Boolean
+    verified: Boolean,
+    email: String,
+    reputation: Number,
+    acType: String,
+    contact: String,
+    dob: String,
+    desig: String,
+    insti: String,
+    instiAdd: String
 });
 
 const User = mongoose.model('user', userSchema);

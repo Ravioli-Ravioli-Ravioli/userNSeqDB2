@@ -8,25 +8,28 @@ block content
     h1(align="center") #{user.username}
     p 
       b Reputation: 
-      | #{user.username}
+      | #{user.reputation}
     p 
       b Account Type: 
-      | #{user.username}
+      | #{user.acType}
     p 
       b Email Address: 
-      | #{user.username}  
+      | #{user.email}  
     p 
-      b Contact Address: 
-      | #{user.username}
+      b Contact Number: 
+      input#input_contact(type="text", placeholder=user.contact, name="contact")
     p 
       b Date of Birth: 
-      | #{user.username}
+      input#input_dob(type="text", placeholder=user.dob, name="dob")
     p 
       b Designation: 
-      | #{user.username}
+      input#input_desig(type="text", placeholder=user.desig, name="desig")
     p 
       b Institution: 
-      | #{user.username}
+      input#input_insti(type="text", placeholder=user.insti, name="insti")
     p 
       b Institution Address: 
-      | #{user}  
+      textarea.form-control(placeholder=user.instiAdd, name="instiAdd")
+    br
+    a(href='/pedit')
+      button.btn.btn-danger(type='button') Save Changes

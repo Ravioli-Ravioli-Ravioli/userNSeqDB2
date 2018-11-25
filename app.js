@@ -20,6 +20,7 @@ app.use(express.static('public'));
 //Define paths
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
+const peditRoutes = require('./routes/pedit-routes');
 const uploadRoutes = require('./routes/upload-routes');
 const newseqRoutes = require('./routes/newseq-routes');
 const indexRoutes = require('./routes/index-routes');
@@ -49,6 +50,7 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 //Use routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
+app.use('/pedit', peditRoutes);
 app.use('/newseq', newseqRoutes);
 app.use('/', indexRoutes);
 //app.use('/homeOut', indexRoutes);

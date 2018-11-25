@@ -6,6 +6,14 @@
   text-align: center;
 }
 
+.center2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+}
+
 #myModal {
   position: absolute;
   left: 0; right: 0;

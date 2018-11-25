@@ -8,28 +8,28 @@ block content
     h1(align="center") #{user.username}
     p 
       b Reputation: 
-      | #{user.username}
+      | #{user.repudation}
     p 
       b Account Type: 
-      | #{user.username}
+      | #{user.acType}
     p 
       b Email Address: 
-      | #{user.username}  
+      | #{user.email}  
     p 
-      b Contact Address: 
-      | #{user.username}
+      b Contact Number: 
+      | #{user.contact}
     p 
       b Date of Birth: 
-      | #{user.username}
+      | #{user.dob}
     p 
       b Designation: 
-      | #{user.username}
+      | #{user.desig}
     p 
       b Institution: 
-      | #{user.username}
+      | #{user.insti}
     p 
       b Institution Address: 
-      | #{user} 
+      | #{user.instiAdd} 
     br
-    a(href='/profile/pedit')
+    a(href='/pedit')
       button.btn.btn-primary(type='button') Edit Info
