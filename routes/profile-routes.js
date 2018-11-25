@@ -12,4 +12,7 @@ router.get('/', authCheck, (req, res) => {
     res.render('profile', { user: req.user });
 });
 
+router.get('/edit', (req, res) => {
+    res.render('pedit', { user: req.user });
+});
 module.exports = router;
