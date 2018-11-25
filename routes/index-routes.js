@@ -5,15 +5,10 @@ const fileUpload = require('express-fileupload');
 const keys = require('../config/keys');
 const multer = require('multer');
 const upload = multer({
-  dest: '../uploads/' // this saves your file into a directory called "uploads"
+  dest: '../uploads/'
 });
 
 const app = express();
-
-/* GET home page. */
-//router.get('/', function(req, res, next) {
-//  res.render('home', { title: 'Express' });
-//});
 
 router.get('/', (req, res) => {
     res.render('home', { user: req.user });
@@ -31,7 +26,9 @@ router.get('/homeIn', authCheck, (req, res) => {
     res.render('homeIn', { user: req.user });
 });
 
-//
+router.get('/test', authCheck, (req, res) => {
+    res.render('test', { user: req.user });
+});
 
 router.post('/addseq', function(req, res){
     console.log(req.body);

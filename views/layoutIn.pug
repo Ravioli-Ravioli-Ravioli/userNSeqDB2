@@ -1,6 +1,5 @@
 doctype html
 html(lang='en')
-  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
   include ../includes/head.pug
     block title
   body(ng-app='fileupp')
@@ -9,7 +8,6 @@ html(lang='en')
       .row.content
         include ../includes/rightNav.pug
         .col-sm-8.text-left
-          h1 Welcome
           block content
         include ../includes/leftNav.pug
     include ../includes/footer.pug
