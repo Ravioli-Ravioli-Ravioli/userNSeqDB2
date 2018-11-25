@@ -11,11 +11,12 @@ const formidable = require('formidable');
 const http = require('http');
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 //Define paths
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
