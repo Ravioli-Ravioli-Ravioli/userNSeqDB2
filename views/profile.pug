@@ -1,4 +1,21 @@
 extends layoutIn.pug
 
 block content
-  p welcome to your profile
+  .center
+    br
+    br
+    img.img-circle(src=user.thumbnail, height="150", width="150")
+    h1(align="center") #{user.username}
+    p 
+      b Username: 
+      | #{user.username}
+    p 
+      b Reputation: 
+      | #{user.username}
+    p 
+      b Account Type: 
+      | #{user.username}
+    p 
+      b Email Address: 
+      | #{user.emails}  
+  

@@ -19,6 +19,10 @@ nav.navbar.navbar-inverse
           a(href='#') Search Sequences
       ul.nav.navbar-nav.navbar-right
         li
+          a(href='/profile')
+            font(color="white") Logged in as 
+              b #{user.username}
+        li
           a(href='/auth/logout')
             span.glyphicon.glyphicon-log-in
             |  Logout

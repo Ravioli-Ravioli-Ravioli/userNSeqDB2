@@ -2,7 +2,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%l
+  width: 50%;
+  text-align: center;
 }
 
 #myModal {
@@ -25,4 +26,8 @@
   border-radius: 25px !important;
   border: 5px solid black !important;
   background: linear-gradient(to right, #B5AC49, #3CA55C);
+}
+
+.navbar.navbar-inverse li a {
+  line-height: 30px;
 }
