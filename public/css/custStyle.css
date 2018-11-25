@@ -4,3 +4,25 @@
   margin-right: auto;
   width: 50%l
 }
+
+#myModal {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  margin: auto;
+
+  height: 500px;
+  width: 600px;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal-content {
+  -webkit-border-radius: 25px !important;
+  -moz-border-radius: 25px !important;
+  border-radius: 25px !important;
+  border: 5px solid black !important;
+  background: linear-gradient(to right, #B5AC49, #3CA55C);
+}

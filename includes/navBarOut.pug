@@ -25,15 +25,18 @@ nav.navbar.navbar-inverse
 
 //Modal
 
-.container  
+.container
   #myModal.modal.fade(role='dialog')
     .modal-dialog
       // Modal content
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal') ×
-          h4.modal-title Modal Header
+          h4.modal-title 
+            b 
+              font(size="5", color="white") Login using
         .modal-body
-          p Some text in the modal.
+          a(href='/auth/google')
+            img#logo.center(src='img/loginGplus.png')
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal') Close
