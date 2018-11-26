@@ -44,3 +44,17 @@ input[type="text"].ronly::placeholder {
   color: black;
   opacity: 1;
 }
+
+.grayed {
+  font-style: italic;
+}
+
+.somebox {
+  -webkit-border-radius: 25px !important;
+  -moz-border-radius: 25px !important;
+  border-radius: 25px !important;
+  border: 5px solid black !important;
+  padding: 25px;
+/*  background: linear-gradient(to right, #B5AC49, #3CA55C);*/
+  background-color: #cccccc;
+}

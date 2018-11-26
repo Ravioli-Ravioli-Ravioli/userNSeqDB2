@@ -1,6 +1,15 @@
 extends layoutIn.pug
 
 block content
-	form(action='upload', enctype='multipart/form-data', method='post')
-		input(name='file-to-upload', type='file')
-		input(type='submit')
+	.somebox
+		.center
+			br(style="line-height:100px")
+			form(action='upload', enctype='multipart/form-data', method='post')
+				p 
+					font(size="4") Please select your sequence file (fasta only).
+				input.form-control-file(name='file-to-upload', type='file', accept=".fasta,.fa,.fna")
+				br
+				br
+				input.form-control(type="submit")
+			br(style="line-height:100px")
+	br(style="line-height:70px")

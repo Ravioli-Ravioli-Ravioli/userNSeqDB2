@@ -6,7 +6,7 @@ const keys = require('../config/keys');
 const multer = require('multer');
 const Seq = require('../models/seq-model');
 const upload = multer({
-  dest: '../uploads/'
+  dest: './uploads/'
 });
 
 const app = express();
@@ -42,31 +42,30 @@ router.post('/addseq', function(req, res){
         console.log('Connected to Server');
         var dbo = db.db('seqtorr');
 
-//        dbo.collection("seqs").findOne({:});
-        var seq1 = {
-          seqId: "",
-          seqName: req.body.seqName,
-          organism: req.body.organism,
-          quality: "",
-          uploader: "",
-          insti: "",
-          uDate: "",
-          lmDate: "",
-          nodes: "",
-          status: "",
-          allowed: ""
-        };
-        dbo.collection("seqs").insertOne(seq1, function(err) {
-          if (err) {
-            console.log(err);
+        dbo.collection("seqs").findOne({seqName: req.body.seqName}).then((currentSeq) => {
+          console.log(currentSeq);
+          if(currentSeq){
+            console.log('seq is: ', currentSeq);
           } else {
-             res.redirect('upload');
-          }
 
-          // Close the database
-          db.close();
-        });
-
+          new Seq({
+            seqId: "",
+            seqName: req.body.seqName,
+            organism: req.body.organism,
+            quality: "",
+            uploader: "",
+            insti: "",
+            uDate: "",
+            lmDate: "",
+            nodes: "",
+            status: "",
+            allowed: ""
+            }).save().then((newSeq) => {
+            console.log("Inserting to database!");
+            res.redirect('upload');
+                });
+        }
+      });
       }
     });
 
@@ -100,13 +99,10 @@ router.post('/editinfo', function(req, res){
 
 });
 ///Edit info
-
 router.post('/upload', upload.single('file-to-upload'), (req, res, next) => {
   console.log(req.body);
   console.log(req.file.path);
   res.redirect('/profile');
 });
-
-
 
 module.exports = router;

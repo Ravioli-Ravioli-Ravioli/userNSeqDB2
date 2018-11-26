@@ -3,14 +3,22 @@ extends layoutIn.pug
 block content
 	.center
 		form#form_add_seq(seqID="addseq", method="post", action="/addseq")
-			span Sequence Name
-			span &nbsp;
-			input#input_seqname(type="text", placeholder="Sequence Name", name="seqName")
+			p Sequence Name
+			input.form-control#input_seqname(type="text", placeholder="Sample 01 Experiment 01", name="seqName")
 			br
+			p Organism
+			input.form-control#input_organism(type="text", placeholder="E. Coli", name="organism")
 			br
-			span Organism
-			span &nbsp;
-			input#input_organism(type="text", placeholder="Organism", name="organism")
+			p.grayed placeholder 01
+			input.form-control.grayed(type="text", placeholder="for other data formats, for future upgrades", readonly, disabled="disabled")
 			br
+			p.grayed placeholder 02
+			input.form-control.grayed(type="text", placeholder="for other data formats, for future upgrades", readonly, disabled="disabled")
+			br
+			p.grayed placeholder 03
+			input.form-control.grayed(type="text", placeholder="for other data formats, for future upgrades", readonly, disabled="disabled")
+			br
+			p.grayed placeholder 04
+			input.form-control.grayed(type="text", placeholder="for other data formats, for future upgrades", readonly, disabled="disabled")
 			br
 			button#submit_seq(type="submit") submit metadata
