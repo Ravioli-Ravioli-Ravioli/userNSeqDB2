@@ -39,3 +39,8 @@
 .navbar.navbar-inverse li a {
   line-height: 30px;
 }
+
+input[type="text"].ronly::placeholder {
+  color: black;
+  opacity: 1;
+}

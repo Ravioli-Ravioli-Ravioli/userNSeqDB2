@@ -4,11 +4,14 @@ const Schema = mongoose.Schema;
 const seqSchema = new Schema({
     seqId: String,
     organism: String,
-    seqQual: String,
-    userId: String,
-    uDate: Date,
-    lmDate: Date,
-    server: String
+    quality: String,
+    uploader: String,
+    insti: String,
+    uDate: String,
+    lmDate: String,
+    nodes: String,
+    status: String,
+    allowed: String
 });
 
 const Seq = mongoose.model('seq', seqSchema);

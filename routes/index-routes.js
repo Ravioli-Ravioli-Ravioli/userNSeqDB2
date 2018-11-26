@@ -36,7 +36,7 @@ router.post('/addseq', function(req, res){
     var MongoClient = mongodb.MongoClient;
 
     // Define where the MongoDB server is
-	var url = keys.mongodb.dbURI;
+	  var url = keys.mongodb.dbURI;
 
     // Connect to the server
     MongoClient.connect(url, { useNewUrlParser: true }, function(err, db){
@@ -71,11 +71,42 @@ router.post('/addseq', function(req, res){
     });
 
 });
+///*Edit info
+router.post('/editinfo', function(req, res){
+    var MongoClient = mongodb.MongoClient;
+	  var url = keys.mongodb.dbURI;
+    console.log(req.body);
+    MongoClient.connect(url, { useNewUrlParser: true }, function(err, db){
+      if (err) {
+        console.log('Unable to connect to the Server:', err);
+      } else {
+        console.log('Connected to Server');
+        var dbo = db.db('seqtorr');
+        var myQ = { username : req.user.username };
+        var newVals = {$set: {contact: req.body.contact, dob: req.body.dob, desig: req.body.desig, insti: req.body.insti, instiAdd: req.body.instiAdd}};
+        dbo.collection("users").updateOne(myQ, newVals, function(err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("db updated");
+            console.log(req.user.username);
+           res.redirect('profile');
+          }
+          db.close();
+        });
+
+      }
+    });
+
+});
+///Edit info
 
 router.post('/upload', upload.single('file-to-upload'), (req, res, next) => {
   console.log(req.body);
   console.log(req.file.path);
   res.redirect('/profile');
 });
+
+
 
 module.exports = router;

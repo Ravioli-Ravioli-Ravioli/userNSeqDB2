@@ -18,7 +18,7 @@ const userSchema = new Schema({
     cir: Number,
     verified: Boolean,
     email: String,
-    reputation: Number,
+    reputation: String,
     acType: String,
     contact: String,
     dob: String,

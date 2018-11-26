@@ -2,34 +2,37 @@ extends layoutIn.pug
 
 block content
   .center
-    br
-    br
-    img.img-circle(src=user.thumbnail, height="150", width="150")
-    h1(align="center") #{user.username}
-    p 
-      b Reputation: 
-      | #{user.reputation}
-    p 
-      b Account Type: 
-      | #{user.acType}
-    p 
-      b Email Address: 
-      | #{user.email}  
-    p 
-      b Contact Number: 
-      input#input_contact(type="text", placeholder=user.contact, name="contact")
-    p 
-      b Date of Birth: 
-      input#input_dob(type="text", placeholder=user.dob, name="dob")
-    p 
-      b Designation: 
-      input#input_desig(type="text", placeholder=user.desig, name="desig")
-    p 
-      b Institution: 
-      input#input_insti(type="text", placeholder=user.insti, name="insti")
-    p 
-      b Institution Address: 
-      textarea.form-control(placeholder=user.instiAdd, name="instiAdd")
-    br
-    a(href='/pedit')
-      button.btn.btn-danger(type='button') Save Changes
+    form#form_add_seq(seqID="addseq", method="post", action="/editinfo")
+      br
+      br
+      img.img-circle(src=user.thumbnail, height="150", width="150")
+      br
+      br
+      p
+        input.ronly#input_username(type="text", placeholder=user.username, name="username", readonly, disabled="disabled", size="15") 
+      p 
+        b Reputation: 
+        input.ronly#input_reputation(type="text", placeholder=user.reputation, name="repudation", readonly, disabled="disabled") 
+      p 
+        b Account Type: 
+        input.ronly#input_acType(type="text", placeholder=user.acType, name="acType", readonly, disabled="disabled") 
+      p 
+        b Email Address: 
+        input.ronly#input_email(type="text", placeholder=user.email, name="email", readonly, disabled="disabled")  
+      p 
+        b Contact Number: 
+        input#input_contact(type="text", placeholder=user.contact, name="contact", onkeypress="this.style.width = ((this.value.length + 1)*10) + 'px';")
+      p 
+        b Date of Birth: 
+        input#input_dob(type="text", placeholder=user.dob, name="dob", onkeypress="this.style.width = ((this.value.length + 1)*10) + 'px';")
+      p 
+        b Designation: 
+        input#input_desig(type="text", placeholder=user.desig, name="desig", onkeypress="this.style.width = ((this.value.length + 1)*10) + 'px';")
+      p 
+        b Institution: 
+        input#input_insti(type="text", placeholder=user.insti, name="insti", onkeypress="this.style.width = ((this.value.length + 1)*10) + 'px';")
+      p 
+        b Institution Address: 
+        textarea.form-control(placeholder=user.instiAdd, name="instiAdd", onkeypress="this.style.width = ((this.value.length + 1)*10) + 'px';")
+      br
+      button.btn.btn-danger#edit_info(type="submit") Save Changes
