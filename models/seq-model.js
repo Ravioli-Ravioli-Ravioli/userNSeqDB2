@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const seqSchema = new Schema({
     seqId: String,
+    seqName: String,
     organism: String,
     quality: String,
     uploader: String,
