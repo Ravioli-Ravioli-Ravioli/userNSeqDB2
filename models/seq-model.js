@@ -12,7 +12,8 @@ const seqSchema = new Schema({
     lmDate: String,
     nodes: String,
     status: String,
-    allowed: String
+    allowed: String,
+    filename: String
 });
 
 const Seq = mongoose.model('seq', seqSchema);

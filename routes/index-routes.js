@@ -5,9 +5,23 @@ const fileUpload = require('express-fileupload');
 const keys = require('../config/keys');
 const multer = require('multer');
 const Seq = require('../models/seq-model');
-const upload = multer({
-  dest: './uploads/'
-});
+//const upload = multer({
+//  dest: './uploads/'
+//});
+
+//Multer rename
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+  }
+})
+
+var upload = multer({ storage: storage })
+//
+
 
 const app = express();
 
@@ -59,7 +73,8 @@ router.post('/addseq', function(req, res){
             lmDate: "",
             nodes: "",
             status: "",
-            allowed: ""
+            allowed: "",
+            filename: ""
             }).save().then((newSeq) => {
             console.log("Inserting to database!");
             res.redirect('upload');
@@ -101,7 +116,7 @@ router.post('/editinfo', function(req, res){
 ///Edit info
 router.post('/upload', upload.single('file-to-upload'), (req, res, next) => {
   console.log(req.body);
-  console.log(req.file.path);
+  console.log(req.file.filename);
   res.redirect('/profile');
 });
 
