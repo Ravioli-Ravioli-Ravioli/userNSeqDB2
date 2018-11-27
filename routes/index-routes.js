@@ -8,8 +8,9 @@ const Seq = require('../models/seq-model');
 const https = require('https');
 const EventEmitter = require("events").EventEmitter;
 const body = new EventEmitter;
-//const request = require("request");
-//Get from all
+
+//Remote Upload
+
 //
 router.get('/seqlist', (req, res) => {
   var x = "x";
@@ -20,20 +21,6 @@ router.get('/seqlist', (req, res) => {
     });
     resp.on('end', () => {
       all = JSON.parse(data);
-      /*For each solution
-      all.forEach(element => {
-        var lin = element._id;
-//        console.log(all.element);
-        all.push({"dlurl": lin});
-      });
-      */
-      /*For loop solution
-      for (var i = 0; i < all.length; i++){
-        var lin = all[i]._id;
-        all[i].push(lin);
-      }
-      console.log(all);
-      */
       res.render('seqlist', {user: req.user, seqinfo: all});
     });
   });
