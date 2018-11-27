@@ -5,11 +5,28 @@ const fileUpload = require('express-fileupload');
 const keys = require('../config/keys');
 const multer = require('multer');
 const Seq = require('../models/seq-model');
-//const upload = multer({
-//  dest: './uploads/'
-//});
+const https = require('https');
 
-//Multer rename
+//Get from all
+var options = {
+  host: "mbb.pregi.net",
+  path: '/api/v1/sequence/all'
+}
+var request = https.request(options, function (res) {
+  var data = '';
+  res.on('data', function (chunk) {
+    data += chunk;
+  });
+  res.on('end',function(){
+  console.log(data);
+  });
+});
+request.on('error', function (e) {
+  console.log(e.message);
+});
+request.end();
+//"https://mbb.pregi.net/api/v1/sequence/all"
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')
@@ -20,8 +37,6 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage })
-//
-
 
 const app = express();
 
