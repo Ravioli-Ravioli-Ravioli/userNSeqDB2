@@ -58,3 +58,9 @@ input[type="text"].ronly::placeholder {
 /*  background: linear-gradient(to right, #B5AC49, #3CA55C);*/
   background-color: #cccccc;
 }
+
+.boxing {
+  top: 50%;
+  left: 50%;
+
+}

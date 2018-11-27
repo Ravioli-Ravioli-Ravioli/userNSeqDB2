@@ -1,11 +1,25 @@
 extends layoutIn.pug
 
 block content
-  .center
-    br
-    br
-    img.img-circle(src=user.thumbnail, height="150", width="150")
-    p 
-    ul
-      each item in all
-        li #{item.organism}
+  .boxing
+    table.table.table-bordered
+      thead 
+        //th IPs
+        th Sequence ID
+        th Organism
+        th Sequence Description
+        th Date Created
+        th Version
+        th Download
+      tbody
+        each item in all
+          tr
+            //td #{item.remote_ips}
+            td #{item._id}
+            td #{item.organism}
+            td #{item.sequence_desc}
+            td #{item.date_created}
+            td #{item.__v}
+            td
+              button.btn.btn-primary(type='button', value="dlSeq", onclick="window.open('https://mbb.pregi.net/api/v1/sequence/" + item.id + "/fasta')") Download
+            

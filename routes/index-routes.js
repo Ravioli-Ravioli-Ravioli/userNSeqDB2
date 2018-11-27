@@ -20,7 +20,20 @@ router.get('/seqlist', (req, res) => {
     });
     resp.on('end', () => {
       all = JSON.parse(data);
-      console.log(x);
+      /*For each solution
+      all.forEach(element => {
+        var lin = element._id;
+//        console.log(all.element);
+        all.push({"dlurl": lin});
+      });
+      */
+      /*For loop solution
+      for (var i = 0; i < all.length; i++){
+        var lin = all[i]._id;
+        all[i].push(lin);
+      }
+      console.log(all);
+      */
       res.render('seqlist', {user: req.user, seqinfo: all});
     });
   });
