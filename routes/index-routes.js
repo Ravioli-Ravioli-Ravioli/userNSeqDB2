@@ -6,26 +6,19 @@ const keys = require('../config/keys');
 const multer = require('multer');
 const Seq = require('../models/seq-model');
 const https = require('https');
+const EventEmitter = require("events").EventEmitter;
+const body = new EventEmitter;
+const request = require("request");
 
 //Get from all
-var options = {
-  host: "mbb.pregi.net",
-  path: '/api/v1/sequence/all'
-}
-var request = https.request(options, function (res) {
-  var data = '';
-  res.on('data', function (chunk) {
-    data += chunk;
-  });
-  res.on('end',function(){
-  console.log(data);
-  });
+request("https://mbb.pregi.net/api/v1/sequence/all", function(err, res, data){
+    body.data = data;
+    body.emit("update");
 });
-request.on('error', function (e) {
-  console.log(e.message);
-});
-request.end();
-//"https://mbb.pregi.net/api/v1/sequence/all"
+
+body.on("update", function () {
+  console.log(body.data);
+})
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

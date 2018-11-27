@@ -12,6 +12,7 @@
     "body-parser": "^1.18.3",
     "cookie-session": "^2.0.0-beta.3",
     "ejs": "^2.6.1",
+    "event-emitter": "^0.3.5",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
     "formidable": "^1.2.1",
@@ -24,7 +25,8 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "pug": "^2.0.3",
-    "pug-plugin-ng": "0.0.2"
+    "pug-plugin-ng": "0.0.2",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "pug-cli": "^1.0.0-alpha6"
