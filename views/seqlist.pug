@@ -10,6 +10,7 @@ block content
         th Sequence Description
         th Date Created
         th Version
+        th Reputation
         th Download
       tbody
         each item in all
@@ -20,6 +21,7 @@ block content
             td #{item.sequence_desc}
             td #{item.date_created}
             td #{item.__v}
+            td #{item.downloads}
             td
               button.btn.btn-primary(type='button', value="dlSeq", onclick="window.open('https://mbb.pregi.net/api/v1/sequence/" + item._id + "/fasta')") Download
             
