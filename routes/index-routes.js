@@ -8,17 +8,18 @@ const Seq = require('../models/seq-model');
 const https = require('https');
 const EventEmitter = require("events").EventEmitter;
 const body = new EventEmitter;
-const request = require("request");
-
+//const request = require("request");
 //Get from all
-request("https://mbb.pregi.net/api/v1/sequence/all", function(err, res, data){
-    body.data = data;
-    body.emit("update");
-});
 
-body.on("update", function () {
-  console.log(body.data);
-})
+https.get("https://mbb.pregi.net/api/v1/sequence/all", (res) => {
+  var data = '';
+  res.on('data', (chunk) => {
+    data += chunk;
+  });
+  res.on('end', () => {
+    console.log(JSON.parse(data)[0]);
+  });
+});
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
