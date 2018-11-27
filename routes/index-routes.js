@@ -8,7 +8,10 @@ const Seq = require('../models/seq-model');
 const https = require('https');
 const EventEmitter = require("events").EventEmitter;
 const body = new EventEmitter;
-//Local Seq List
+//SeqTorru
+router.get('/seqtorru', (req, res) => {
+    res.render('seqtorru', { user: req.user });
+});
 
 //
 router.get('/seqlist', (req, res) => {

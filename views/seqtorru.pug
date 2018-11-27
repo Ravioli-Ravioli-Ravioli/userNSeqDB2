@@ -1,0 +1,28 @@
+extends layoutIn.pug
+
+block content
+	.center
+		h3 
+			b Upload Sequence to SeqTorr
+		input.form-control-file#sequence_file(type='file', name='sequence')
+		button#upload_file(type='submit', onclick='uploadFile()') Upload
+		script.
+			$('#sequence_file').change(function() {
+			formdata = new FormData();
+			if ($(this).prop('files').length > 0) {
+			file = $(this).prop('files')[0];
+			formdata.append("sequence", file);
+			}
+			});
+			function uploadFile() {
+			jQuery.ajax({
+			url: 'https://mbb.pregi.net/api/v1/sequence',
+			type: 'POST',
+			data: formdata,
+			processData: false,
+			contentType: false,
+			success: function (result) {
+			console.log("all is well");
+			}
+			});
+			}
