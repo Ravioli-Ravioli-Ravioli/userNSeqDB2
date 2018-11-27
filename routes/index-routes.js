@@ -8,8 +8,7 @@ const Seq = require('../models/seq-model');
 const https = require('https');
 const EventEmitter = require("events").EventEmitter;
 const body = new EventEmitter;
-
-//Remote Upload
+//Local Seq List
 
 //
 router.get('/seqlist', (req, res) => {
@@ -25,7 +24,7 @@ router.get('/seqlist', (req, res) => {
     });
   });
 });
-//
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')
@@ -123,13 +122,32 @@ router.post('/editinfo', function(req, res){
     });
 
 });
-///Edit info
-/*
-router.post('/upload', upload.single('file-to-upload'), (req, res, next) => {
-  console.log(req.body);
-  console.log(req.file.filename);
-  res.redirect('/profile');
+
+router.get('/localseqlist', function(req, res){
+    var MongoClient = mongodb.MongoClient;
+	  var url = keys.mongodb.dbURI;
+    MongoClient.connect(url, { useNewUrlParser: true }, function(err, db){
+      if (err) {
+//        console.log('Unable to connect to the Server:', err);
+      } else {
+//        console.log('Connected to Server');
+        var dbo = db.db('seqtorr');
+        var myQ = { username : req.user.username };
+        var newVals = {$set: {contact: req.body.contact, dob: req.body.dob, desig: req.body.desig, insti: req.body.insti, instiAdd: req.body.instiAdd}};
+        dbo.collection("seqs").find({}).toArray(function(err, result) {
+          if (err) {
+            console.log(err);
+          } else if (result.length){
+            res.render('localseqlist', {user : req.user, localseqlist : result});
+          } else {
+            console.log('No documents found!');
+          }
+          db.close();
+        });
+
+      }
+    });
+
 });
-*/
 
 module.exports = router;

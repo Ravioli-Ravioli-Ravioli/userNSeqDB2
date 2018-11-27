@@ -1,0 +1,17 @@
+extends layoutIn.pug
+
+block content
+  .boxing
+    table.table.table-bordered
+      thead 
+        th Sequence Description
+        th Organism
+        th Upload Date
+        th File Name
+      tbody
+        each lseq in localseqlist
+          tr
+            td #{lseq.seqDesc}
+            td #{lseq.organism}
+            td #{lseq.udate}
+            td #{lseq.filename}

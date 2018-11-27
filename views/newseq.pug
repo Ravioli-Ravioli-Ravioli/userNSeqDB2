@@ -3,7 +3,7 @@ extends layoutIn.pug
 block content
 	.center
 		form#form_add_seq(seqID="addseq", method="post", action="/addseq", enctype='multipart/form-data')
-			p Sequence Name
+			p Sequence Description
 			input.form-control#input_seqdesc(type="text", placeholder="Sample 01 Experiment 01", name="seqDesc")
 			br
 			p Organism
