@@ -66,7 +66,7 @@ router.post('/addseq',  upload.single('file-to-upload'), function(req, res){
 //        console.log('Connected to Server');
         var dbo = db.db('seqtorr');
 
-        dbo.collection("seqs").findOne({seqName: req.body.seqName}).then((currentSeq) => {
+        dbo.collection("seqs").findOne({seqDesc: req.body.seqDesc}).then((currentSeq) => {
           console.log(currentSeq);
           if(currentSeq){
 //            console.log('seq is: ', currentSeq);
@@ -74,7 +74,7 @@ router.post('/addseq',  upload.single('file-to-upload'), function(req, res){
 
           new Seq({
             seqId: "",
-            seqName: req.body.seqName,
+            seqDesc: req.body.seqDesc,
             organism: req.body.organism,
             quality: "",
             uploader: "",
