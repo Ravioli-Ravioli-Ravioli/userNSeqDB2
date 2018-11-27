@@ -10,17 +10,22 @@ const EventEmitter = require("events").EventEmitter;
 const body = new EventEmitter;
 //const request = require("request");
 //Get from all
-
-https.get("https://mbb.pregi.net/api/v1/sequence/all", (res) => {
-  var data = '';
-  res.on('data', (chunk) => {
-    data += chunk;
-  });
-  res.on('end', () => {
-    console.log(JSON.parse(data)[0]);
+//
+router.get('/seqlist', (req, res) => {
+  var x = "x";
+  https.get("https://mbb.pregi.net/api/v1/sequence/all", (resp) => {
+    var data = '';
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+    resp.on('end', () => {
+      all = JSON.parse(data);
+      console.log(x);
+      res.render('seqlist', {user: req.user, seqinfo: all});
+    });
   });
 });
-
+//
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')
@@ -50,25 +55,21 @@ router.get('/homeIn', authCheck, (req, res) => {
     res.render('homeIn', { user: req.user });
 });
 
-router.get('/test', authCheck, (req, res) => {
-    res.render('test', { user: req.user });
-});
-
 router.post('/addseq',  upload.single('file-to-upload'), function(req, res){
     console.log(req.body);
     var MongoClient = mongodb.MongoClient;
 	  var url = keys.mongodb.dbURI;
     MongoClient.connect(url, { useNewUrlParser: true }, function(err, db){
       if (err) {
-        console.log('Unable to connect to the Server:', err);
+//        console.log('Unable to connect to the Server:', err);
       } else {
-        console.log('Connected to Server');
+//        console.log('Connected to Server');
         var dbo = db.db('seqtorr');
 
         dbo.collection("seqs").findOne({seqName: req.body.seqName}).then((currentSeq) => {
           console.log(currentSeq);
           if(currentSeq){
-            console.log('seq is: ', currentSeq);
+//            console.log('seq is: ', currentSeq);
           } else {
 
           new Seq({
@@ -85,7 +86,7 @@ router.post('/addseq',  upload.single('file-to-upload'), function(req, res){
             allowed: "",
             filename: ""
             }).save().then((newSeq) => {
-            console.log("Inserting to database!");
+//            console.log("Inserting to database!");
             res.redirect('profile');
                 });
         }
@@ -101,9 +102,9 @@ router.post('/editinfo', function(req, res){
     console.log(req.body);
     MongoClient.connect(url, { useNewUrlParser: true }, function(err, db){
       if (err) {
-        console.log('Unable to connect to the Server:', err);
+//        console.log('Unable to connect to the Server:', err);
       } else {
-        console.log('Connected to Server');
+//        console.log('Connected to Server');
         var dbo = db.db('seqtorr');
         var myQ = { username : req.user.username };
         var newVals = {$set: {contact: req.body.contact, dob: req.body.dob, desig: req.body.desig, insti: req.body.insti, instiAdd: req.body.instiAdd}};
@@ -111,8 +112,8 @@ router.post('/editinfo', function(req, res){
           if (err) {
             console.log(err);
           } else {
-            console.log("db updated");
-            console.log(req.user.username);
+//            console.log("db updated");
+//            console.log(req.user.username);
            res.redirect('profile');
           }
           db.close();

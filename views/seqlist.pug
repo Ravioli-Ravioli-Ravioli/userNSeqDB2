@@ -1,0 +1,11 @@
+extends layoutIn.pug
+
+block content
+  .center
+    br
+    br
+    img.img-circle(src=user.thumbnail, height="150", width="150")
+    p 
+    ul
+      each item in all
+        li #{item.organism}
