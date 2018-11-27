@@ -45,7 +45,7 @@ router.get('/test', authCheck, (req, res) => {
     res.render('test', { user: req.user });
 });
 
-router.post('/addseq', function(req, res){
+router.post('/addseq',  upload.single('file-to-upload'), function(req, res){
     console.log(req.body);
     var MongoClient = mongodb.MongoClient;
 	  var url = keys.mongodb.dbURI;
@@ -77,7 +77,7 @@ router.post('/addseq', function(req, res){
             filename: ""
             }).save().then((newSeq) => {
             console.log("Inserting to database!");
-            res.redirect('upload');
+            res.redirect('profile');
                 });
         }
       });
@@ -114,10 +114,12 @@ router.post('/editinfo', function(req, res){
 
 });
 ///Edit info
+/*
 router.post('/upload', upload.single('file-to-upload'), (req, res, next) => {
   console.log(req.body);
   console.log(req.file.filename);
   res.redirect('/profile');
 });
+*/
 
 module.exports = router;
